@@ -1,0 +1,41 @@
+
+
+<header>
+  <nav>
+    <ul>
+
+      <li><a href="createbook">Create Book</a></li>
+     </ul>
+  </nav>
+</header>
+
+
+  Name : <input [(ngModel)]  ='user.userName' class="form-control w-25" />
+  Age  : <input [(ngModel)]  ='user.age' type="number"class="form-control w-25"/>
+  Email : <input [(ngModel)] ='user.emailId' type="email" class="form-control w-25"/> 
+
+ <button  type="button" class="btn btn-primary"   (click)="saveUser()">save</button>
+ <br>
+ <br>
+ Enter userId <input type="number"class="form-control w-25"  [(ngModel)]="deleteUserId" >  <button type="button" class="btn btn-danger" (click)="deleteUserById()">Delete User</button>
+ {{result}} 
+
+<br>
+Enter userId <input type="number" required="number" class="form-control w-25" [(ngModel)]="user.userId" >  <button type="button" class="btn btn-info" (click)="getUserById()">Search User</button>
+
+{{user1.userId}} {{user1.userName}} {{user1.age}} {{user1.emailId}}
+
+
+<br>
+
+<button (click)="getAllUsers()">Get All Users Data</button>
+
+<ol>
+  <li *ngFor='let user of users'>
+    {{user.userId}} {{user.userName}}    {{user.age}}      {{user.emailId}} 
+  </li>
+</ol>
+
+
+
+<router-outlet></router-outlet>
