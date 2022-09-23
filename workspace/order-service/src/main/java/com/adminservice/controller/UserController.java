@@ -1,7 +1,6 @@
 package com.adminservice.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,39 +17,31 @@ import com.adminservice.service.IUserService;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class UserController {
-	
-	
+
 	@Autowired
 	private IUserService userService;
-	
+
 	@GetMapping("{id}")
 	private User getUser(@PathVariable("id") int userId) {
-	
-		System.out.println("inside:: getUser    "+userId);
-		Optional<User> list= userService.getUserById(userId);
-        
-		return list.get();
+		return userService.getUserById(userId);
 	}
-	
+
 	@PostMapping("/saveUser")
 	private User saveUser(@RequestBody User user) {
 		System.out.println(user.toString());
-	 return userService.saveUser(user);
+		return userService.saveUser(user);
 	}
-	
+
 	@GetMapping("/getAllUsers")
 	private List<User> getAllUsers() {
-		
-	 return userService.getAllUsers();
-
+		return userService.getAllUsers();
 	}
-	
+
 	@DeleteMapping("/deleteUser/{id}")
-	private String deleteUser(@PathVariable("id") int userId) {
-			System.out.println("inside delete user "+ userId);
-	 return	userService.deleteUser(userId);
+	private User deleteUser(@PathVariable("id") int userId) {
+		return userService.deleteUser(userId);
 
 	}
 

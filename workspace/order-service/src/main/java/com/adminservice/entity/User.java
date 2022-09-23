@@ -4,10 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Pattern;
-
-import com.sun.istack.NotNull;
 
 @Entity
 public class User {
@@ -17,7 +14,6 @@ public class User {
 private int userId;
 @Pattern(regexp = "[A-Za-z]*")
 private String userName;
-@Pattern(regexp = "[1-9]*")
 private int age;
 @Pattern(regexp = "[a-zA-Z0-9_\\-\\.]+[@][a-z]+[\\.][a-z]{2,3}")
 private String emailId;

@@ -1,12 +1,12 @@
 package com.adminservice.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.adminservice.entity.User;
+import com.adminservice.exceptionhandler.CustomExceptionHandler;
 import com.adminservice.repository.IUserRepository;
 
 @Service
@@ -22,9 +22,10 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public Optional<User> getUserById(int userId) {
+	public User getUserById(int userId) {
 
-		return userRepository.findById(userId);
+		return userRepository.findById(userId)
+				.orElseThrow(() -> new CustomExceptionHandler.UserNotFoundException("USER NOT FOUND"));
 	}
 
 	@Override
@@ -34,16 +35,12 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public String deleteUser(int userId) {
+	public User deleteUser(int userId) {
 
-		Optional<User> user = getUserById(userId);
+		User user = getUserById(userId);
+		userRepository.deleteById(userId);
+		return user;
 
-		if (user.isEmpty()) {
-			return "USER NOT FOUND";
-		} else {
-			userRepository.deleteById(userId);
-			return "USER DELETED SUCCESSFULLY";
-		}
 	}
 
 }
