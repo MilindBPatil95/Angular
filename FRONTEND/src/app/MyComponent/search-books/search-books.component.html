@@ -1,0 +1,52 @@
+<div align="center" class="w-100"> 
+<form name="form1"  #form="ngForm" class="form-control">
+<h5>Search by :</h5>  
+    
+       <div>
+           <label for="category">Category :</label>
+           <input type="text" name="input1" [(ngModel)]  ='book.category' class="form-control w-25" />
+       </div>
+       <div>
+        <label for="price">Price:</label>
+        <input type="number" name="input2" [(ngModel)]  ='book.price' class="form-control w-25" />
+    </div>
+    <div>
+        <label for="authorName">Author Name:</label>
+        <input type="text" name="input3"  [(ngModel)]  ='book.authorFirstName' class="form-control w-25" />
+    </div>
+    <div>
+        <label for="publisher">Publisher Name:</label>
+        <input type="text" name="input4"  [(ngModel)]  ='book.publisher' class="form-control w-25" />
+    </div>
+    <button  type="submit" class="btn btn-primary"   (click)="getBooks()">Get Books</button>
+</form>
+</div>
+
+<table align="center" class="table table-success table-striped w-75"> 
+  <thead> 
+    <td>Book Id</td>
+    <td>Title</td>
+    <td>Publisher</td>
+    <td>Date</td>
+    <td>AuthorName</td>
+    <td>Content</td>
+    <td>Category</td>
+    <td>Price</td>
+  </thead> 
+
+   <tbody>
+     
+          <tr *ngFor='let book of books'>
+            <td>{{book.bookId}}</td>
+            <td> {{book.title}}</td>
+            <td> {{book.publisher}}</td>
+            <td> {{book.date}}</td>
+            <td> {{book.authorFirstName}}</td>
+            <td> {{book.content}}</td>
+            <td> {{book.category}}</td>
+            <td> {{book.price}}</td>
+
+          </tr>
+        </tbody>
+      
+  </table>

@@ -18,6 +18,10 @@ public class UserService implements IUserService {
 	@Override
 	public User saveUser(User user) {
 
+		 if(!(user.getAge()>0 && user.getAge()<200))
+		 {
+			 throw new CustomExceptionHandler.InvalidUserException("INVALID USER AGE EXCEPTION");
+		 }
 		return userRepository.save(user);
 	}
 

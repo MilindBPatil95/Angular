@@ -19,10 +19,10 @@ public class BookServiceTest {
 	private BookService bookService;
 
 	public Book getBook() {
-		Author author1 = new Author(2, "Jack", "Rowling", "rowling@gamil.com");
+		//Author author1 = new Author(2, "Jack", "Rowling", "rowling@gamil.com");
 
-		Book book = new Book(17l, "Harry Potter", "bloomsbury publisher", null, 123.33, "comic",
-				"http://localhost:8080/digitalBooks/createBook/image", true, "Jack", author1);
+		Book book = new Book(17l, "Harry Potter", "bloomsbury publisher", null, 123.33, "comic","*****content*****",
+				"http://localhost:8080/digitalBooks/createBook/image", true, "Jack");
 
 		
 

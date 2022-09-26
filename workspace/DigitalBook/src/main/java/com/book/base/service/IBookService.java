@@ -16,4 +16,6 @@ public interface IBookService {
 
 	List<Book> getBooksByPublisher(String publisher);
 
+	List<Book> getAllBooks();
+
 }

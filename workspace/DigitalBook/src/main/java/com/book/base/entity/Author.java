@@ -1,20 +1,31 @@
 package com.book.base.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Pattern;
+
+import com.book.base.utility.Message;
 
 @Entity
 public class Author {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int authorId;
-	@Pattern(regexp = "[A-Za-z]*")
+	@Pattern(regexp = "[^\\s][A-Za-z\\s]*",message = Message.INVALID_FIRST_NAME)
 	private String firstName;
-	@Pattern(regexp = "[A-Za-z]*")
+	@Pattern(regexp = "[A-Za-z]*",message = Message.INVALID_LAST_NAME)
 	private String lastName;
-	@Pattern(regexp = "[a-zA-Z0-9_\\-\\.]+[@][a-z]+[\\.][a-z]{2,3}")
+	@Pattern(regexp = "[a-zA-Z0-9_\\-\\.]+[@][a-z]+[\\.][a-z]{2,3}",message = Message.INVALID_EMAIL_ID)
 	private String emailId;
 	
+	@Override
+	public String toString() {
+		return "Author [authorId=" + authorId + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId="
+				+ emailId + "]";
+	}
+
 	public Author() {
 		// TODO Auto-generated constructor stub
 	}

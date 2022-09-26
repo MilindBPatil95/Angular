@@ -28,7 +28,7 @@ public class IBookRepositoryTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void createBookTest() {
-		Author author1 = new Author(2,"Jack","Rowling","rowling@gamil.com");
+	//	Author author1 = new Author(2,"Jack","Rowling","rowling@gamil.com");
 		
 
 //		Book book = new Book(17l, "Harry Potter", "bloomsbury publisher", new Date("1997-01-11"), 123.33, "comic",
@@ -48,7 +48,7 @@ public class IBookRepositoryTest {
 		book.setActive(true);
         book.setAuthorFirstName("Jack");
         
-        book.setAuthor(author1);
+    
         
 		Book book1=bookRepository.save(book);
 		assertThat(book1).isNotNull();

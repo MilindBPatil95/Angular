@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+import com.book.base.utility.Message;
 
 @Entity
 public class Book {
@@ -21,33 +24,34 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "bookId")
 	private Long bookId;
-	@NotBlank(message = "Title is required ")
+	@NotBlank
+	@Pattern(regexp = "[^\\s][A-Za-z\\s]*", message = Message.INVALID_TITLE)
 	private String title;
-	@NotBlank(message = "publisher name  is required ")
+	@NotBlank(message = Message.INVALID_PUBLISHER)
+	@Pattern(regexp = "[^\\s][A-Za-z\\s]*")
 	private String publisher;
 	@Temporal(TemporalType.DATE)
 	private Date date;
+//	@NotBlank(message = Message.INVALID_PRICE)
 	private Double price;
-	@NotBlank(message = "category is required")
+	@NotBlank
+	@Pattern(regexp = "[^\\s][A-Za-z\\s]*", message = Message.INVALID_CATEGORY)
 	private String category;
-	@NotBlank(message = "image is required")
+	@NotBlank
+	private String content;
+
+	@NotBlank(message = Message.IMAGE)
 	private String image;
 	private Boolean active;
+	@Pattern(regexp = "[^\\s][A-Za-z\\s]*", message = Message.INVALID_AUTHOR_FIRST_NAME)
 	private String authorFirstName;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "authorId", referencedColumnName = "authorId")
-	private Author author;
-     
+ 
 	public Book() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Book(Long bookId, @NotBlank(message = "Title is required ") String title,
-			@NotBlank(message = "publisher name  is required ") String publisher, Date date, Double price,
-			@NotBlank(message = "category is required") String category,
-			@NotBlank(message = "image is required") String image, Boolean active, String authorFirstName,
-			Author author) {
+	public Book(Long bookId, String title, String publisher, Date date, Double price, String category,String content, String image,
+			Boolean active, String authorFirstName) {
 		super();
 		this.bookId = bookId;
 		this.title = title;
@@ -55,10 +59,11 @@ public class Book {
 		this.date = date;
 		this.price = price;
 		this.category = category;
+		this.content= content;
 		this.image = image;
 		this.active = active;
 		this.authorFirstName = authorFirstName;
-		this.author = author;
+	
 	}
 
 	public Long getBookId() {
@@ -104,6 +109,13 @@ public class Book {
 	public String getCategory() {
 		return category;
 	}
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
 
 	public void setCategory(String category) {
 		this.category = category;
@@ -133,13 +145,5 @@ public class Book {
 		this.authorFirstName = authorFirstName;
 	}
 
-	public Author getAuthor() {
-		return author;
-	}
 
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
-	
-	
 }

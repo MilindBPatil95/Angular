@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.book.base.entity.Book;
+import com.book.base.repository.IAuthorRepository;
 import com.book.base.service.IBookService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,13 +25,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/digitalBooks")
+@CrossOrigin(origins = "*")
 public class DigitalBookController {
+	
 	@Autowired
 	private IBookService bookService;
 
 	@PostMapping("/book")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
+		System.out.println("inside create book ");
 		Book book1 = bookService.createBook(book);
 		return new ResponseEntity<Book>(book1, HttpStatus.CREATED);
 	}
@@ -62,4 +67,10 @@ public class DigitalBookController {
 
 	}
 
+	@GetMapping("/books/search/getAllBooks")
+	public ResponseEntity<List<Book>> getAllBooks() {
+		List<Book> books = bookService.getAllBooks();
+		return new ResponseEntity<List<Book>>(books, HttpStatus.OK);
+
+	}
 }

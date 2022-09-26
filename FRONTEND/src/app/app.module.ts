@@ -10,8 +10,14 @@ import { UserformComponent } from './MyComponent/userform/userform.component';
 
 import { CreatebookComponent } from './MyComponent/createbook/createbook.component';
 import {Routes, RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchBooksComponent } from './MyComponent/search-books/search-books.component';
+import { PurchasedBookComponent } from './MyComponent/purchased-book/purchased-book.component';
+import { BuyBookComponent } from './MyComponent/buy-book/buy-book.component';
 const appRoutes:Routes=[
-  {path: 'createbook' , component :CreatebookComponent}
+    { path: 'createbook' , component :CreatebookComponent},
+  { path:'searchbook', component :SearchBooksComponent},
+  { path:'purchasedbook', component :PurchasedBookComponent},{ path:'buybook', component :BuyBookComponent}
 ];
 
 @NgModule({
@@ -19,6 +25,10 @@ const appRoutes:Routes=[
     AppComponent,
     UserformComponent,
     CreatebookComponent,
+    SearchBooksComponent,
+    PurchasedBookComponent,
+    BuyBookComponent
+
   ],
   imports: [
     BrowserModule,
@@ -26,6 +36,7 @@ const appRoutes:Routes=[
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

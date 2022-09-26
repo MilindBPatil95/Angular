@@ -1,87 +1,56 @@
-<p>createbook works!</p>
-
-
-<div align="left">
 
 
 
-
-    <h1>Create Books </h1>
-
-
-
-
+<div align="center">
+    <h1>Create Book </h1>
     <table>
 
         <tr>
-
             <td>Logo</td>
-
-            <td><input type="image" /></td>
-
+            <td><input type="text" [(ngModel)]="book.image" placeholder="Enter path here"></td>
         </tr>
 
         <tr>
-
             <td>Title</td>
-
-            <td><input type="text"/></td>
-
+            <td><input [(ngModel)]="book.title" type="text" placeholder="---text--"/></td>
         </tr>
 
         <tr>
-
             <td>Category</td>
-
-            <td><input  type="text"/></td>
-
+            <td><input  [(ngModel)]="book.category" type="text" placeholder="---text--"/></td>
         </tr>
 
         <tr>
-
             <td>Author</td>
-
-            <td><input  type="text"/></td>
-
+            <td><input  [(ngModel)]="book.authorFirstName" type="text" placeholder="enter author first name"/></td>
         </tr>
-
         <tr>
-
             <td>Publisher</td>
-
-            <td><input type="text" /></td>
-
+            <td><input type="text" [(ngModel)]="book.publisher" placeholder="enter publisher name"/></td>
         </tr>
 
         <tr>
-
             <td>Published Date</td>
-
-            <td><input type='date' /></td>
+            <td><input type='date' [(ngModel)]="book.date" /></td>
 
         </tr>
 
         <tr>
-
             <td>Content</td>
-
-            <td><input  type="text" /></td>
+            <td><input  type="text" [(ngModel)]="book.content"  placeholder="---text--"/></td>
 
         </tr>
 
         <tr>
-
             <td>Price</td>
-
-            <td><input type='number' /></td>
+            <td><input type='number' [(ngModel)]="book.price" placeholder="0.00"/></td>
 
         </tr>
 
         <tr>
 
             <td>Active</td>
-
-            <td><input  type='checkbox' /></td>
+            <td><input  type='checkbox' [(ngModel)]="book.active"/></td>
 
         </tr>
 
@@ -91,7 +60,7 @@
 
             <td>
 
-                <div align="right"><button (click)='createBook()'> save</button></div>
+                <div align="right"><button (click)='createBook()' class="btn btn-primary"> save</button></div>
 
             </td>
 
