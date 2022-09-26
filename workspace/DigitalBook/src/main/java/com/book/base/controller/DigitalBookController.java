@@ -66,6 +66,7 @@ public class DigitalBookController {
 		return new ResponseEntity<List<Book>>(books, HttpStatus.OK);
 
 	}
+	
 
 	@GetMapping("/books/search/getAllBooks")
 	public ResponseEntity<List<Book>> getAllBooks() {
@@ -73,4 +74,21 @@ public class DigitalBookController {
 		return new ResponseEntity<List<Book>>(books, HttpStatus.OK);
 
 	}
+	
+	@GetMapping("/books/search/buyBook/{bookId}")
+	public ResponseEntity<Book> buyBook(@PathVariable("bookId") Long bookId) {
+		Book book = bookService.buyBook(bookId);
+		return new ResponseEntity<Book>(book, HttpStatus.OK);
+
+	}
+	
+	@GetMapping("/books/search/getAllPurchasedBooks")
+	public ResponseEntity<List<Book>> getAllPurchasedBooks() {
+		List<Book> books = bookService.getAllPurchasedBooks();
+		return new ResponseEntity<List<Book>>(books, HttpStatus.OK);
+
+	}
+	
+	
+
 }

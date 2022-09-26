@@ -1,6 +1,7 @@
 package com.book.base.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.book.base.entity.Author;
 import com.book.base.entity.Book;
 import com.book.base.exceptionhandler.CustomExceptionHandler;
-import com.book.base.exceptionhandler.GlobleExceptionHandler;
 import com.book.base.repository.IAuthorRepository;
 import com.book.base.repository.IBookRepository;
 import com.book.base.utility.Message;
@@ -77,9 +77,31 @@ public class BookService implements IBookService {
 		List<Book> books= bookRepo.findAll();
 		if (books.isEmpty()) {
 			throw new CustomExceptionHandler.InvalidBookException(Message.EMPTY_LIST);
-		}
-		
+		}		
 		return books;
+	}
+
+	@Override
+	public Book buyBook(Long bookId) {
+		Book book= bookRepo.findById(bookId).orElseThrow(()-> new CustomExceptionHandler.InvalidBookException(Message.BOOK_NOT_EXIST));
+		
+		if(book.getActive()== false)
+		{
+			throw new CustomExceptionHandler.InvalidBookException(Message.INVALID_BOOK);
+		}else {
+			book.setActive(false);
+			bookRepo.save(book);
+		}		
+		
+		return book;
+	}
+
+	@Override
+	public List<Book> getAllPurchasedBooks() {
+		
+		List<Book> list=getAllBooks();
+		List<Book>	purchasedBookList=list.stream().filter(book->book.getActive()==false).collect(Collectors.toList());
+		return purchasedBookList;
 	}
 
 }

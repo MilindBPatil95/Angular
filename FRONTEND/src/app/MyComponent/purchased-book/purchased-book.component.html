@@ -1,1 +1,36 @@
-<p>purchased-book works!</p>
+<H1 align="center"> ************* List of Purchased Books************</H1>
+<div align="left">
+  <button type="button" class="btn btn-success" (click)="getAllPurchasedBooks()"> Get All Purchased Books</button>
+
+</div>
+
+
+<table align="center" class="table table-success table-striped w-75"> 
+    <thead> 
+      <td>Book Id</td>
+      <td>Title</td>
+      <td>Publisher</td>
+      <td>Date</td>
+      <td>AuthorName</td>
+      <td>Content</td>
+      <td>Category</td>
+      <td>Price</td>
+    </thead> 
+  
+     <tbody>
+       
+            <tr *ngFor='let book of books'>
+              <td>{{book.bookId}}</td>
+              <td> {{book.title}}</td>
+              <td> {{book.publisher}}</td>
+              <td> {{book.date}}</td>
+              <td> {{book.authorFirstName}}</td>
+              <td> {{book.content}}</td>
+              <td> {{book.category}}</td>
+              <td> {{book.price}}</td>
+  
+            </tr>
+          </tbody>
+        
+    </table>
+

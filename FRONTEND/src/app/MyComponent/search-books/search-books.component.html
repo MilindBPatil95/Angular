@@ -1,5 +1,5 @@
 <div align="center" class="w-100"> 
-<form name="form1"  #form="ngForm" class="form-control">
+<form name="form1"  #form="ngForm">
 <h5>Search by :</h5>  
     
        <div>
@@ -22,7 +22,7 @@
 </form>
 </div>
 
-<table align="center" class="table table-success table-striped w-75"> 
+<table align="center" class="table table-success table-striped w-75" *ngIf="books"> 
   <thead> 
     <td>Book Id</td>
     <td>Title</td>

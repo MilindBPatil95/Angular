@@ -18,4 +18,8 @@ public interface IBookService {
 
 	List<Book> getAllBooks();
 
+	Book buyBook(Long bookId);
+
+	List<Book> getAllPurchasedBooks();
+
 }

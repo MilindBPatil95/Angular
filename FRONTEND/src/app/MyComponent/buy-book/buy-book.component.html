@@ -1,6 +1,15 @@
+  <H1 align="center"> *************Buy Books************</H1>
+
+
 <div align="left">
   <button type="button" class="btn btn-success" (click)="getAllBooks()"> Get All Books</button>
 
+</div>
+
+<div align="center">Enter Book Id
+  <label for="category"> :</label>
+  <input type="text" name="input1" [(ngModel)]  ='bookId' class="form-control w-25" />
+  <button type="button" class="btn btn-success" (click)="buyBook()"> BuyBook</button>
 </div>
 
 
